@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: zuul-test
+
+server:
+  port: 9080
+
+ribbon:
+  eureka:
+    enabled: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: false
+  swagger-ui:
+    urls[0].name: data-broker
+    urls[0].url: /data-broker/swagger-ui.json
+    path: /swagger-ui.html
+    display-request-duration: false
+    groups-order: DESC
+
+zuul:
+  sensitive-headers:
+  host:
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+  routes:
+    table-api:
+      path: /tables/**
+      url: http://frost-cli:9898/tables
+      strip-prefix: true
+    query-api:
+      path: /query/**
+      url: http://frost-cli:9898/query
+      strip-prefix: true
+    DB-SWAGGER:
+      path: /data-broker/**
+      url: http://gabia-90:9898/data-broker
+      strip-prefix: true

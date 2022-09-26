@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: zuul-test
+
+  servlet:
+    multipart:
+      file-size-threshold: 1MB
+      location: C:/tempsave
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+
+server:
+  port: 9080
+
+ribbon:
+  eureka:
+    enabled: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: false
+  swagger-ui:
+    urls[0].name: data-broker
+    urls[0].url: /data-broker/swagger-ui.json
+    path: /swagger-ui.html
+    display-request-duration: false
+    groups-order: DESC
+
+zuul:
+  sensitive-headers:
+  host:
+    connect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+  routes:
+    # table-api:
+    #   path: /tables/**
+    #   url: http://localhost:9898/tables
+    #   strip-prefix: true
+    # query-api:
+    #   path: /query/**
+    #   url: http://localhost:9898/query
+    #   strip-prefix: true
+    # ingestor-api:
+    #   path: /ingestor/**
+    #   url: http://localhost:9797/ingestor
+    #   strip-prefix: true
+    # DB-SWAGGER:
+    #   path: /data-broker/**
+    #   url: http://localhost:9898/data-broker
+    #   strip-prefix: true
+    eqc-api:
+      path: /eqc/**
+      url: http://localhost:6768/eqc
+      strip-prefix: true
+    prod-idx-api:
+      path: /prod-idx/**
+      url: http://localhost:46768/prod-idx
+      strip-prefix: true
