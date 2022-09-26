@@ -22,8 +22,8 @@ springdoc:
     groups:
       enabled: false
   swagger-ui:
-    urls[0].name: data-broker
-    urls[0].url: /data-broker/swagger-ui.json
+    urls[0].name: broker
+    urls[0].url: /broker/swagger-ui.json
     path: /swagger-ui.html
     display-request-duration: false
     groups-order: DESC
@@ -34,27 +34,11 @@ zuul:
     connect-timeout-millis: 600000
     socket-timeout-millis: 600000
   routes:
-    # table-api:
-    #   path: /tables/**
-    #   url: http://localhost:9898/tables
-    #   strip-prefix: true
-    # query-api:
-    #   path: /query/**
-    #   url: http://localhost:9898/query
-    #   strip-prefix: true
-    # ingestor-api:
-    #   path: /ingestor/**
-    #   url: http://localhost:9797/ingestor
-    #   strip-prefix: true
-    # DB-SWAGGER:
-    #   path: /data-broker/**
-    #   url: http://localhost:9898/data-broker
-    #   strip-prefix: true
-    eqc-api:
-      path: /eqc/**
-      url: http://localhost:6768/eqc
+    test-api:
+      path: /test/**
+      url: http://localhost:6768/test
       strip-prefix: true
-    prod-idx-api:
-      path: /prod-idx/**
-      url: http://localhost:46768/prod-idx
+    test1-api:
+      path: /test1/**
+      url: http://localhost:46768/test1
       strip-prefix: true
